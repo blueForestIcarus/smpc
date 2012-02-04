@@ -23,7 +23,7 @@ bind ? help
 bind f filter
 bind F clear-filters
 
-set columns=artist year album trackshort title length
+set columns=artist year album discshort trackshort title length
 set sort=track disc album date albumartistsort
 set nonextafteraction
 
@@ -59,3 +59,4 @@ set mouse
 bind y ! echo "#" | xsel
 bind ^T ! transcribe "#"
 bind ^W ! lyrics | less
+bind ^A ! aa "#"

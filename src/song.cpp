@@ -49,6 +49,7 @@ Song::Song(mpd_Song * song)
 	composer		= (song->composer ? song->composer : "");
 	performer		= (song->performer ? song->performer : "");
 	disc			= (song->disc ? song->disc : "");
+	discshort		= "";
 	comment			= (song->comment ? song->comment : "");
 
 	time			= song->time;
@@ -78,6 +79,7 @@ Song::Song(Song * song)
 	composer		= song->composer;
 	performer		= song->performer;
 	disc			= song->disc;
+	discshort		= song->discshort;
 	comment			= song->comment;
 
 	time			= song->time;
@@ -108,6 +110,7 @@ Song::Song(string uri)
 	composer		= "";
 	performer		= "";
 	disc			= "";
+	discshort		= "";
 	comment			= "";
 
 	time			= MPD_SONG_NO_TIME;
@@ -140,6 +143,13 @@ void		Song::init()
 		trackshort = trackshort.substr(1);
 	if ((i = trackshort.find('/')) != string::npos)
 		trackshort = trackshort.substr(0, i);
+
+	/* discshort from disc */
+	discshort = disc;
+	while (discshort[0] == '0')
+		discshort = discshort.substr(1);
+	if ((i = discshort.find('/')) != string::npos)
+		discshort = discshort.substr(0, i);
 
 	/* sort names if none available */
 	if (artistsort.size() == 0)

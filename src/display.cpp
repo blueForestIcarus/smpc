@@ -902,6 +902,9 @@ void pms_win_playlist::set_column_size()
 			case FIELD_DISC:
 				ui = song->disc.size();
 				break;
+			case FIELD_DISCSHORT:
+				ui = song->discshort.size();
+				break;
 			case FIELD_COMMENT:
 				ui = song->comment.size();
 				break;

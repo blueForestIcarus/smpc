@@ -194,8 +194,8 @@ void			Colortable::defaults()
 	fields.genre				= new color(COLOR_WHITE, -1, 0);
 	fields.composer				= new color(COLOR_WHITE, -1, 0);
 	fields.performer			= new color(COLOR_WHITE, -1, 0);
-	fields.disc				= new color(COLOR_BLACK, -1, 0);
-	fields.discshort			= new color(COLOR_BLACK, -1, 0);
+	fields.disc				= new color(COLOR_BLACK, -1, A_BOLD);
+	fields.discshort			= new color(COLOR_BLACK, -1, A_BOLD);
 	fields.comment				= new color(COLOR_WHITE, -1, 0);
 
 	/* field types for the topbar */
@@ -216,8 +216,8 @@ void			Colortable::defaults()
 	topbar.fields.genre			= new color(COLOR_WHITE, -1, 0);
 	topbar.fields.composer			= new color(COLOR_WHITE, -1, 0);
 	topbar.fields.performer			= new color(COLOR_WHITE, -1, 0);
-	topbar.fields.disc			= new color(COLOR_BLACK, -1, 0);
-	topbar.fields.discshort			= new color(COLOR_BLACK, -1, 0);
+	topbar.fields.disc			= new color(COLOR_BLACK, -1, A_BOLD);
+	topbar.fields.discshort			= new color(COLOR_BLACK, -1, A_BOLD);
 	topbar.fields.comment			= new color(COLOR_WHITE, -1, 0);
 
 	/* list colors */

@@ -193,6 +193,8 @@ int			Pms::main()
 	disp->forcedraw();
 	disp->refresh();
 
+        //little hack
+        system("mpc consume on > /dev/null");
 	/*
 	 * Main loop
 	 */
@@ -272,6 +274,7 @@ int			Pms::main()
 					win->gotocurrent();
 				}
 			}
+                        
 		}
 
 		if (statechanged)
@@ -285,8 +288,17 @@ int			Pms::main()
 					/* soak up return value to suppress 
 					 * warning */
 					int code = system(options->get_string("onplaylistfinish").c_str());
+                                         
 				}
 			}
+
+                        if (comm->status()->state == MPD_STATUS_STATE_STOP && pending != PEND_STOP)
+			{ 
+                                //little hack to make things go
+                                system("smpcb -r > /dev/null");
+                                system("mpc play > /dev/null"); 
+			}
+                                               
 		}
 
 

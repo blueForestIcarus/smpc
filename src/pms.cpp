@@ -667,8 +667,17 @@ bool			Pms::run_shell(string cmd)
 	int				i;
 	Songlist *			list;
 	char				c;
+        bool                            show_output = true;
 
 	msg->clear();
+
+        /*
+         * !: if string is prefaced by "!" then don't display output
+         */
+        if(cmd[0]=='!'){
+                cmd = cmd.substr(1);
+                show_output = false;
+        }
 
 	/*
 	 * %: path to current song, not enclosed in quotes
@@ -736,25 +745,29 @@ bool			Pms::run_shell(string cmd)
 		}
 	}
 
-	//pms->log(MSG_DEBUG, 0, "running shell command '%s'\n", cmd.c_str());
-	endwin();
+        if(show_output){
+	        //pms->log(MSG_DEBUG, 0, "running shell command '%s'\n", cmd.c_str());
+	        endwin();
 
-	msg->code = system(cmd.c_str());
-	msg->code = WEXITSTATUS(msg->code);
+	        msg->code = system(cmd.c_str());
+	        msg->code = WEXITSTATUS(msg->code);
 
-	pms->log(MSG_DEBUG, 0, "Shell returned %d\n", msg->code);
-	if (msg->code != 0)
-		printf(_("\nShell returned %d\n"), msg->code);
+	        pms->log(MSG_DEBUG, 0, "Shell returned %d\n", msg->code);
+	        if (msg->code != 0)
+		        printf(_("\nShell returned %d\n"), msg->code);
 
-	printf(_("\nPress ENTER to continue"));
-	fflush(stdout);
-	{
-		/* soak up return value to suppress warning */
-		int key = scanf("%c", &c);
-	}
+	        printf(_("\nPress ENTER to continue"));
+	        fflush(stdout);
+	        {
+		        /* soak up return value to suppress warning */
+		        int key = scanf("%c", &c);
+	        }
 
-	reset_prog_mode();
-	refresh();
+	        reset_prog_mode();
+	        refresh();
+        }else{
+                system(cmd.c_str());        
+        }
 
 	return true;
 }
